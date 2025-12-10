@@ -84,5 +84,3 @@ A dedicated section for social responsibility, allowing users to donate to vario
     * **Storage:** Managing images for profiles and product catalogs.
 * **Architecture:** MVVM (Model-View-ViewModel)
 * **Navigation:** Jetpack Navigation Compose
-
----
