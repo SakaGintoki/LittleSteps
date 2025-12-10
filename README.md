@@ -5,8 +5,13 @@
 ![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-4285F4?style=for-the-badge&logo=android&logoColor=white)
 ![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white)
 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c60759e1-315b-452f-a6a4-c33cd6d7fe14" />
+
 **LittleSteps** is a comprehensive Parenting SuperApp designed to assist parents in every step of their child's growth. Built with modern Android technologies (Jetpack Compose), it integrates AI assistance, e-commerce, caregiver services, and social impact features into a single, intuitive platform.
 
+> **Work in Progress (WIP)**
+>
+> This project is currently under active development. Some features may not be fully implemented or are subject to change. Please refer to the [Roadmap](#-roadmap) section for upcoming updates.
 ---
 
 ## App Overview
@@ -69,7 +74,7 @@ A dedicated section for social responsibility, allowing users to donate to vario
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 * **Language:** [Kotlin](https://kotlinlang.org/)
 * **UI Framework:** [Jetpack Compose](https://developer.android.com/jetpack/compose) (Modern, declarative UI)
