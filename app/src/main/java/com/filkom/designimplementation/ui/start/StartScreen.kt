@@ -1,0 +1,145 @@
+package com.filkom.designimplementation.ui.start
+
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.filkom.designimplementation.R
+import com.filkom.designimplementation.model.data.auth.User
+import com.filkom.designimplementation.ui.components.SocialCircleButton
+import com.filkom.designimplementation.ui.theme.Poppins
+import com.filkom.designimplementation.viewmodel.auth.LoginViewModel
+
+@Composable
+fun StartScreen(
+    viewModelGoogle: LoginViewModel = viewModel(),
+    onSuccess: (User) -> Unit = {},
+    onFailed: (String) -> Unit = {},
+    onLoginClick: () -> Unit = {},
+    onSignUpClick: () -> Unit = {},
+    onGoogleClick: () -> Unit
+) {
+    val context = LocalContext.current
+    Box(modifier = Modifier.fillMaxSize()) {
+        // Header foto + fade putih ke bawah
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(420.dp)
+                .offset(y = 30.dp)
+        ) {
+            Image(
+                painter = painterResource(R.drawable.start_bg),
+                contentDescription = "Mother and Child",
+                alpha = 0.95f,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+            val colorStops = arrayOf(
+                0.0f to Color.Transparent,
+                0.25f to Color.White.copy(alpha = 0.3f),
+                0.55f to Color.White.copy(alpha = 0.65f),
+                0.8f to Color.White.copy(alpha = 0.9f),
+                1f to Color.White
+            )
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(100.dp)
+                    .align(Alignment.BottomCenter)
+                    .background(brush = Brush.verticalGradient(colorStops = colorStops))
+            )
+        }
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .offset(y = 200.dp)
+                .align(Alignment.CenterEnd)
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp, vertical = 32.dp)
+        ) {
+            Text(
+                text = buildAnnotatedString {
+                    withStyle(SpanStyle(color = Color.Black, fontWeight = FontWeight.Bold)) { append("Tumbuh ") }
+                    withStyle(SpanStyle(color = Color(0xFFEB4C94), fontWeight = FontWeight.Bold)) { append("Bersama ") }
+                    withStyle(SpanStyle(color = Color(0xFFEB4C94), fontWeight = FontWeight.Bold)) { append("Bahagia ") }
+                    withStyle(SpanStyle(color = Color.Black, fontWeight = FontWeight.Bold)) { append("Selamanya") }
+                },
+                fontSize = 30.sp,
+                fontFamily = Poppins
+            )
+
+            Spacer(Modifier.height(8.dp))
+            Text(
+                text = "LittleSteps tersedia untuk membantu orang tua dan buah hati.",
+                fontSize = 14.sp,
+                color = Color.Gray
+            )
+
+            Spacer(Modifier.height(24.dp))
+
+            // Tombol Login / Sign Up
+            Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.fillMaxWidth()) {
+                Button(
+                    onClick = onLoginClick,
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF987C5)),
+                    shape = RoundedCornerShape(50),
+                    modifier = Modifier.weight(1f).height(50.dp)
+                ) { Text("Login", fontSize = 16.sp) }
+
+                OutlinedButton(
+                    onClick = onSignUpClick,
+                    shape = RoundedCornerShape(50),
+                    border = BorderStroke(1.dp, Color(0xFFE0E0E0)),
+                    modifier = Modifier.weight(1f).height(50.dp)
+                ) { Text("Sign Up", fontSize = 16.sp, color = Color(0xFFF987C5)) }
+            }
+
+            Spacer(Modifier.height(32.dp))
+
+            // Divider dengan teks
+            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp)) {
+                HorizontalDivider(color = Color(0xFFE0E0E0), thickness = 1.dp, modifier = Modifier.weight(1f))
+                Text(text = "atau Login dengan", color = Color.Gray, fontSize = 13.sp, modifier = Modifier.padding(horizontal = 8.dp))
+                HorizontalDivider(color = Color(0xFFE0E0E0), thickness = 1.dp, modifier = Modifier.weight(1f))
+            }
+
+            Spacer(Modifier.height(32.dp))
+
+
+            // Sosial: Facebook & Google
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                SocialCircleButton(R.drawable.ic_facebook, "Facebook")
+                {
+                    TODO()
+                }
+                SocialCircleButton(R.drawable.ic_google, "Google")
+                {
+                    val webClientId = context.getString(R.string.default_web_client_id)
+                    viewModelGoogle.signInWithGoogle(context, webClientId)
+                }
+            }
+        }
+    }
+}
