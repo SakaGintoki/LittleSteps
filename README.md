@@ -11,7 +11,7 @@
 
 > **Work in Progress (WIP)**
 >
-> This project is currently under active development. Some features may not be fully implemented or are subject to change. Please refer to the [Roadmap](#-roadmap) section for upcoming updates.
+> This project is currently under active development. Some features may not be fully implemented or are subject to change. 
 ---
 
 ## App Overview
@@ -86,12 +86,3 @@ A dedicated section for social responsibility, allowing users to donate to vario
 * **Navigation:** Jetpack Navigation Compose
 
 ---
-
-## Getting Started
-
-To run this project locally, follow these steps:
-
-### 1. Clone the repository
-```bash
-git clone [https://github.com/yourusername/LittleSteps.git](https://github.com/yourusername/LittleSteps.git)
-```
